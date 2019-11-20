@@ -156,7 +156,7 @@ ul.nav-agile {
 }
 
 div#word-mark h1 a {
-  color: #fff;
+  color: #e06320;
   font-size: 1em;
   text-transform: capitalize;
   font-weight: 600;
@@ -180,7 +180,7 @@ div#word-mark h1 a {
 .nav-agile li a {
     /*width: 80px; */
     display: block;
-    color: #eee;
+    color: #e06320;
     font-size: 17px;
     line-height: 28px;
     letter-spacing: 1px;
@@ -400,7 +400,7 @@ section {
 
 
 .banner {
-    background: url(../../img/wall_flare)no-repeat center;
+    background: url(../../img/wallpaper1)no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -412,7 +412,7 @@ section {
 
 .banner:after,
 .inner_banner:after {
-    background-color: #000;
+    background-color: #fff;
     content: "";
     left: 0;
     opacity: 0.5;
@@ -424,7 +424,7 @@ section {
 }
 
 .agileinfo-logo h2 {
-    color: #fff;
+    color: #e06320;
     display: inline-block;
     font-size: 3.5em;
     text-transform: capitalize;
