@@ -76,7 +76,7 @@ header.index-banner {
 
 button.btn.w3ls-btn {
     padding: 8px 29px;
-    background: #00BCD4;
+    background: #6fb119;
     color: #eee;
     font-weight: 500;
     border: none;
@@ -85,7 +85,7 @@ button.btn.w3ls-btn {
     border-radius: 0px;
 }
 button.btn.w3ls-btn:hover {
-    background: #333;
+    background: #6ebcfb;
 }
 /*** Navigation Styles ***/
 
@@ -105,7 +105,7 @@ nav.main-header.navShadow {
   -webkit-box-shadow: 0 4px 30px -5px rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 30px -5px rgba(0, 0, 0, 0.2);
   height: 80px;
-     background: #00BCD4;
+     background: #d0dce8;
 }
 
 nav.navShadow #word-mark {
@@ -130,12 +130,12 @@ ul.nav-agile {
 #logo {
   width: 55px;
   height: 55px;
-  background: url(../../img/lcs_logo_tiny);
-  border-radius: 50%;
+  background: url(../../img/lcs_logo_transparent);
+  /*border-radius: 50%;*/
   cursor: pointer;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
 }
 
 #word-mark {
@@ -400,7 +400,7 @@ section {
 
 
 .banner {
-    background: url(../../img/wallpaper1)no-repeat center;
+    /*background: url(../../img/wallpaper1)no-repeat center;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -436,17 +436,19 @@ section {
     color: #ffffff;
     font-size: 0.7em;
     display: block;
-    background: rgba(0, 0, 0, 0.4);
-    width: 85px;
+    background: url(../../img/lcs_logo_transparent);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 150px;
     line-height: 90px;
-    height: 85px;
-    border-radius: 50%;
+    height: 150px;
+    /*border-radius: 50%;*/
 }
 .slider-info a.btn {
     background: none;
     padding: 10px 25px;
-    color: #fff;
-    border: 2px solid #fff;
+    color: #6fb119;
+    border: 2px solid #6fb119;
     font-size: 16px;
     letter-spacing: 1px;
     border-radius: 0;
@@ -457,7 +459,7 @@ section {
 }
 h3.txt-w3_agile {
     font-size: 3.2em;
-    color: #fff;
+    color: #6ebcfb;
     text-transform: capitalize;
     font-weight: 100;
 }
@@ -467,7 +469,7 @@ h3.txt-w3_agile {
 }
 
 .banner-form h5 {
-    color: #fff;
+    color: #6ebcfb;
      font-size: 25px;
     letter-spacing: 1px;
     font-weight: 600;
@@ -478,11 +480,11 @@ h3.txt-w3_agile {
 }
 .banner-form input[type="text"], .banner-form input[type="email"], .banner-form input[type="password"] {
     width: 100%;
-    color: #eee;
+    color: #e06320;
     outline: none;
     font-size: 16px;
     padding: 0.8em 1em;
-    border: 1px solid #e6eae8;
+    border: 1px solid #e06320;
     -webkit-appearance: none;
     margin-bottom: 0.8em;
     letter-spacing: 1px;
@@ -494,9 +496,9 @@ h3.txt-w3_agile {
     padding: .8em 1em;
     font-size: 16px;
     cursor: pointer;
-    border: 2px solid #00BCD4;
+    border: 2px solid #6fb119;
     outline: none;
-    background: #00BCD4;
+    background: #6fb119;
     width: 100%;
     letter-spacing: 1px;
     transition: 0.5s all;
@@ -507,8 +509,8 @@ h3.txt-w3_agile {
     -ms-transition: 0.5s all;
 }
 .banner-form input[type=submit]:hover {
-    background: #333;
-    border: 2px solid #333;
+    background: #6ebcfb;
+    border: 2px solid #6ebcfb;
 }
 
 /*-- place holder --*/
