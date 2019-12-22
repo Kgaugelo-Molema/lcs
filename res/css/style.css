@@ -436,7 +436,7 @@ section {
     color: #ffffff;
     font-size: 0.7em;
     display: block;
-    background: url(../../img/lcs_logo_transparent);
+    background: url(../../img/lcs_logo_transparent.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 150px;
@@ -626,6 +626,7 @@ ul.partners-icon li i {
 }
 .clr2 {
     color: #ffc168;
+    background: black;
 }
 .clr3 {
     color: #00bce4;
