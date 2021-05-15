@@ -1,3 +1,50 @@
+<?php
+$title = "";
+$language = "";
+$ide = "";
+$suggestion = "";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['name'])) {
+        $name = $_POST['name'];
+        $surname = $_POST['surname'];
+        if (isset($_POST['java']))
+            $language = 'Java';
+        if (isset($_POST['csharp']))
+            $language = 'C#';
+        if (isset($_POST['tsql']))
+            $language = 'T-SQL';
+        if (isset($_POST['alllang']))
+            $language = 'All';
+    }
+
+    if (isset($_POST['msvs']))
+        $ide = 'MS Visual Studio';
+    if (isset($_POST['vscode']))
+        $ide = 'Visual Studio Code';
+    if (isset($_POST['ssms']))
+        $ide = 'SQL Server Management Studio';
+    if (isset($_POST['allide']))
+        $ide = 'All';
+
+    $language = 'Preffered Language: ' . $language;
+    $ide = 'Preffered IDE: ' . $ide;
+
+    $email_from = 'kgaugelo.molema@firstrand.co.za';
+
+    $email_subject = "Survey - $name $surname";
+
+    if (isset($_POST['suggestion']))
+        $suggestion = 'Suggestion: ' . $_POST['suggestion'];
+    $email_body = "$name $surname\n$language\n$ide\n$suggestion\n";
+    $headers = "From: $email_from \r\n";
+    $headers .= "Reply-To: kgaugelo.molema@firstrand.co.za \r\n";
+    $to = "kmolema@gmail.com";
+
+    if (isset($_POST['name']))
+        mail($to, $email_subject, $email_body, $headers);
+    $title = "**Thank you for your response**";
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,132 +69,61 @@
         <div class="col-md-2">
         </div>
         <div class="col-md-8">
-            <form class="survey-form">
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                echo "<div id='title'>$title</div>";
+                //echo $_SERVER['REQUEST_METHOD'];
+                exit;
+            }
+            ?>
+            <form method="post" action="index.php" class="survey-form">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3>Technical Skills Survey</h3></div>
+                    <div class="panel-heading"><h3>Technical Survey</h3></div>
                     <div class="panel-body">
-                        <input type="text" placeholder="Name"/><br>
-                        <input type="text" placeholder="Surname"/><br>
-                        Preffered Language:
+                        <input name="name" type="text" placeholder="Name"/><br>
+                        <input name="surname" type="text" placeholder="Surname"/><br>
+                        <strong>Most Preffered Language:</strong>
                         <br/>
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-default">
-                                <input type="radio" autocomplete="off"/> Java
+                                <input name="java" type="radio" autocomplete="off"/> Java
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio" autocomplete="off"/> C#
+                                <input name="csharp" type="radio" autocomplete="off"/> C#
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio" autocomplete="off"/> T-SQL
+                                <input name="tsql" type="radio" autocomplete="off"/> T-SQL
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio" autocomplete="off"/> All
+                                <input name="alllang" type="radio" autocomplete="off"/> All
                             </label>
                         </div>
                         <br/>
                         <br/>
 
-                        Preffered IDE:
+                        <strong>Most Preffered IDE:</strong>
                         <br/>
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-default">
-                                <input type="radio" autocomplete="off"/>MS Visual Studio
+                                <input name="msvs" type="radio" autocomplete="off"/>MS Visual Studio
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio" autocomplete="off"/>MS VS Code
+                                <input name="vscode" type="radio" autocomplete="off"/>MS VS Code
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio" autocomplete="off"/>MS SQL Man Studio
+                                <input name="ssms" type="radio" autocomplete="off"/>MS SQL Man Studio
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio" autocomplete="off"/>All
+                                <input name="allide" type="radio" autocomplete="off"/>All
                             </label>
                         </div>
                         <br/>
                         <br/>
-                        <textarea placeholder="Suggestions"></textarea><br>
+                        <textarea name="suggestion" placeholder="Suggestions"></textarea><br>
+                        <button type="submit">Submit</button>
                     </div>
                 </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">Experience Rating</div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-2 col-sm-2 col-xs-5">
-                                <span style="font-size:22px;">Stay:</span>
-                            </div>
-                            <div class="col-md-10 col-sm-10 col-xs-7">
-                                <div id="rate1" style="margin-top:6px;"></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2 col-sm-2 col-xs-5">
-                                <span style="font-size:22px;">Food:</span>
-                            </div>
-                            <div class="col-md-10 col-sm-10 col-xs-7">
-                                <div id="rate2" style="margin-top:6px;"></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2 col-sm-2 col-xs-5">
-                                <span style="font-size:22px;">Service:</span>
-                            </div>
-                            <div class="col-md-10 col-sm-10 col-xs-7">
-                                <div id="rate3" style="margin-top:6px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">Travel Satisfaction</div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-2 col-sm-2 col-xs-12">
-                                <span style="font-size:22px;">Travel:</span>
-                            </div>
-                            <div class="col-md-1 col-sm-1 col-xs-2 text-center">
-                                <button id="decrease1" style="width:100%; max-width:35px;">-</button>
-                            </div>
-                            <div class="col-md-8 col-sm-8 col-xs-8">
-                                <div style="width:100%;" id="progress1"></div>
-                            </div>
-                            <div class="col-md-1 col-sm-1 col-xs-2 text-center">
-                                <button id="increase1" style="width:100%; max-width:35px;">+</button>
-                            </div>
-                        </div>
-                        <div class="clearfix"><br/></div>
-                        <div class="row">
-                            <div class="col-md-2 col-sm-2 col-xs-12">
-                                <span style="font-size:22px;">Transfer:</span>
-                            </div>
-                            <div class="col-md-1 col-sm-1 col-xs-2 text-center">
-                                <button id="decrease2" style="width:100%; max-width:35px;">-</button>
-                            </div>
-                            <div class="col-md-8 col-sm-8 col-xs-8">
-                                <div style="width:100%;" id="progress2"></div>
-                            </div>
-                            <div class="col-md-1 col-sm-1 col-xs-2 text-center">
-                                <button id="increase2" style="width:100%; max-width:35px;">+</button>
-                            </div>
-                        </div>
-                        <div class="clearfix"><br/></div>
-                        <div class="row">
-                            <div class="col-md-2 col-sm-2 col-xs-12">
-                                <span style="font-size:22px;">Checkin:</span>
-                            </div>
-                            <div class="col-md-1 col-sm-1 col-xs-2 text-center">
-                                <button id="decrease3" style="width:100%; max-width:35px;">-</button>
-                            </div>
-                            <div class="col-md-8 col-sm-8 col-xs-8">
-                                <div style="width:100%;" id="progress3"></div>
-                            </div>
-                            <div class="col-md-1 col-sm-1 col-xs-2 text-center">
-                                <button id="increase3" style="width:100%; max-width:35px;">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </form>
         </div>
     </div>
